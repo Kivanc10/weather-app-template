@@ -51,18 +51,19 @@ weatherForm.addEventListener("submit", (e) => {
     const location = input.value;
     messageOne.textContent = "Loading..."
     messageTwo.textContent = ""
-    const url = "http://api.weatherstack.com/current?access_key=3a0b3388aefa6c52fe79b7db5a9ddb74&query=" + location;
+    const url = "/weather?address=" + location;
     fetch(url)
         .then((response) => {
             response.json()
                 .then((data) => {                    
-                    if (data.success == false) {
+                    if (data.error) {
                         messageOne.textContent="This place did not found, please search again";
                     } else {
-                        const city = data.request.query;
-                        const weather = data.current.weather_descriptions[0]
-                        const temperature = data.current.temperature
-                        messageTwo.innerHTML = (`${city} , weather is ${weather} , temperature is ${temperature}`);
+                        const city = data.location
+                        const weather = data.weather
+                        const temperature = data.temperature
+                        const windSpeed = data.windSpeed;
+                        messageTwo.innerHTML = (`${city} , weather is ${weather} , wind speed is ${windSpeed} , temperature is ${temperature}`);
                     }                    
                 })
         })

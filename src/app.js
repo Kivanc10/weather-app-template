@@ -5,7 +5,7 @@ const forecast = require("./utils/forecast");
 const geoCode = require("./utils/geoCode");
 
 const app = express();
-
+const port = process.env.PORT || 8080;
 
 const publicDirectory = path.join(__dirname,"../public");
 const viewsDirectory = path.join(__dirname,"../templates/views");
@@ -69,7 +69,6 @@ app.get("/weather",(req,res) => {
             }
             console.log("Error", error);
             res.send({
-                forecast : "It is sunny",
                 location : location,
                 weather : weather,
                 temperature : temperature,
@@ -111,8 +110,8 @@ app.get("/me/*",(req,res) => {
 
 
 
-app.listen(8080,() => {
-    console.log("Server is available on 8080 port");
+app.listen(port,() => {
+    console.log("Server is available on ",port);
 });
 
 
