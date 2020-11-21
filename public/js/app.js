@@ -62,6 +62,7 @@ weatherForm.addEventListener("submit", (e) => {
                         const city = data.location
                         const weather = data.weather
                         const temperature = data.temperature
+                        messageOne.textContent = ""
                         const windSpeed = data.windSpeed;
                         messageTwo.innerHTML = (`${city} , weather is ${weather} , wind speed is ${windSpeed} , temperature is ${temperature}`);
                     }                    
